@@ -17,13 +17,14 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
 }
 /*
     2. Remove default margin
   */
 * {
   margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 /*
     Typographic tweaks!
@@ -77,14 +78,25 @@ h6 {
 .main-container {
   position: relative;
   width: 100%;
+  display: flex;
+  /* You have to clean the three properties after you added content between header and footer */
+  flex-direction: column;
+
+  justify-content: space-between;
+  height: 100vh;
 
   background-color: red;
+}
+
+.div {
+  unicode-bidi: isolate;
 }
 /* :-webkit-backdrop-filter: blur(7px); */
 .header-container {
   height: 90px;
+  line-height: 90px;
   width: 100vw;
-  /* background-color: orange; */
+  background-color: orange;
   display: flex;
   justify-content: space-between;
   /* backdrop-filter: blur(7px); */
@@ -96,7 +108,6 @@ h6 {
   left: 0;
   right: 0;
   box-shadow: none;
-  line-height: 90px;
 }
 .nav {
   -webkit-backdrop-filter: blur(7px);
@@ -113,6 +124,7 @@ h6 {
   padding-inline: 9vw;
   transition: 0.3s;
   z-index: 100;
+  align-items: center;
 }
 .nav-logo {
   position: relative;
@@ -123,20 +135,32 @@ h6 {
   position: absolute;
   top: -15px;
   right: -20px;
-  font-size: 5rem;
+  font-size: 5em;
   color: var(--text-color-second);
+  /* background-color: red; */
+  font-family: Poppins;
 }
 .nav-name {
   font-size: 30px;
   font-weight: 600;
   color: var(--text-color-third);
 }
-.navemenu {
+
+.nave-menu,
+.nave_menu_list {
   display: flex;
+  align-items: center;
+  /* text-decoration: none; */
 }
-.navemenu,
-.navemenulist {
-  display: flex;
+ul {
+  /* display: block; */
+  list-style-type: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
 }
 .nav-menu .nav_list {
   list-style: none;
@@ -148,19 +172,20 @@ h6 {
   unicode-bidi: isolate;
   list-style: none;
 }
-.nav-menu,
-.nave_menu_list {
-  display: flex;
+.active-link {
+  position: relative;
+  color: var(--first-color);
 }
-ul {
-  display: block;
-  list-style-type: none;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 40px;
-  unicode-bidi: isolate;
+.active-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  transform: translate(-50%, -50%);
+  width: 5px;
+  height: 5px;
+  background: var(--first-color);
+  border-radius: 50%;
 }
 .nav-link {
   text-decoration: none;
@@ -190,9 +215,29 @@ ul {
   font-weight: 500;
   transition: all 300ms ease;
   padding: 1rem;
-  /* width: 8rem; */
+  min-width: 8rem;
   border-radius: 2rem;
   white-space: nowrap;
+}
+.btn-icon svg {
+  margin-top: -3px;
+  transform: rotate(15deg);
+}
+.nav-btn svg {
+  transition: all 300ms ease;
+  min-height: 24px;
+  min-width: 24px;
+}
+.nav-btn {
+  line-height: 30px;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
 .input,
 button,
@@ -202,21 +247,6 @@ select {
 }
 button {
   appearance: auto;
-  font-style: ;
-  font-variant-ligatures: ;
-  font-variant-caps: ;
-  font-variant-numeric: ;
-  font-variant-east-asian: ;
-  font-variant-alternates: ;
-  font-variant-position: ;
-  font-weight: ;
-  font-stretch: ;
-  font-size: ;
-  font-family: ;
-  font-optical-sizing: ;
-  font-kerning: ;
-  font-feature-settings: ;
-  font-variation-settings: ;
   text-rendering: auto;
   color: buttontext;
   letter-spacing: normal;
@@ -242,6 +272,40 @@ button {
 .nav-menu-btn {
   display: none;
 }
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 30px;
+  background: #f8f8f8;
+  padding-block: 40px 60px;
+  overflow: hidden;
+}
+.top-footer {
+  font-size: 25px;
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+}
+.middle-footer .footer-menu {
+  display: flex;
+}
+footer p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+.footer_menu_list a {
+  text-decoration: none;
+  color: var(--text-color-second);
+  font-weight: 500;
+  margin-inline: 20px;
+}
+
 @media only screen and (max-width: 900px) {
   .nav-menu-btn {
     display: flex;
